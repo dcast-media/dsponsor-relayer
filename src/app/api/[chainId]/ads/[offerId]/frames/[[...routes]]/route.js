@@ -260,7 +260,8 @@ app.frame("/api/:chainId/ads/:offerId/frames", async (c) => {
     if (isValidUrl(image)) {
       const imageResponse = await fetch(image, {
         method: "HEAD",
-        cache: "force-cache"
+        cache: "force-cache",
+        next: { tags: [`head-${image}`] }
       });
       contentType = imageResponse.headers.get("Content-Type");
     }
